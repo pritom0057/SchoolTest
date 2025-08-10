@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import morgan from 'morgan';
@@ -8,6 +8,7 @@ import { corsOptions } from './config/cors.js';
 import rateLimiter from './config/rateLimit.js';
 
 const app = express();
+app.get('/health', (_req: Request, res: Response) => res.send('ok'));
 
 app.use(rateLimiter);
 app.use(cors(corsOptions));
